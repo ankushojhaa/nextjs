@@ -7,9 +7,9 @@ const Navbar = () => (
       <Link href="/"><a className="navbar-brand">YRA Solution</a></Link>
       <div className={styles.conatct}>
           <p className="mb-0 text-white small">
-              <span>+65 1234 568</span>
+          <span><a href="tel:65-81659995">+65 81659995</a></span>
               <span className="mx-1">|</span>
-              <span>yra@whatever.com</span>
+              <span>yra@support.com</span>
           </p>
       </div>
 
