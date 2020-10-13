@@ -5,7 +5,7 @@ import clsx from 'clsx';
 const Layout = (props) => (
   <div>
     <Head>
-      <title>BitzPrice</title>
+      <title>Yra</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.css"/>
     </Head>
     <div className={styles.main_layout}>
