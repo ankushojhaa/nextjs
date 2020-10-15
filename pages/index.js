@@ -1,6 +1,5 @@
 import Layout from '../components/Layouts';
 import styles from  '../assets/css/styles.module.css';
-import Navbar from '../components/Navbar';
 import Link from 'next/link';
 const Index = (props) => (
   

@@ -2,26 +2,73 @@ import Layout from '../components/Layouts';
 import Link from 'next/link';
 import styles from  '../assets/css/styles.module.css';
 import clsx from 'clsx';
-const Services = () => (
-    <Layout>
+import { motion } from 'framer-motion';
+const axios = require('axios');
+class Services extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Title: String,
+      Content: String
+    };
+    this.getApi = this.getApi.bind(this);
+  }
+  componentDidMount() {
+    this.getApi();
+  }
+
+  getApi() {
+
+    // Make a request for a user with a given ID
+    axios.get('https://yra-strapi.herokuapp.com/pages/2')
+      .then((response) => {
+        this.setState({ Title: response.data.Title, Content: response.data.Content })
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }
+
+  render() {
+    return <Layout>
     <div className={styles.services_page}>
       <div className="container py-5">
+      <motion.div initial="hidden" animate="visible" variants={{
+          hidden: {
+            scale: .8,
+            opacity: 0
+          },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: .4
+            }
+          },
+          }}> 
+          
           <div className="d-flex align-items-center">
           <ul className="list-inline mb-0">
               <li className="list-inline-item">
                 <Link href="/"><a className="text-white"> Back </a></Link>
               </li>
           </ul>
-          <h1 className={clsx(styles.abt_breadcrumb, "mb-0 ml-auto text-white")}>Services</h1>
+          <h1 className={clsx(styles.abt_breadcrumb, "mb-0 ml-auto text-white")}>{this.state.Title}</h1>
         </div>
         <div className="pt-5">
-            <p className="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-             and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p className="text-white"><div dangerouslySetInnerHTML={{ __html: this.state.Content}} /></p>
         </div>
+        
+      </motion.div>
       </div>
     </div>
   </Layout>
-);
-
+ }
+}
 export default Services;
