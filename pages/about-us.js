@@ -6,71 +6,68 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 const axios = require('axios');
 
-class About extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Title: String,
-      Content: String
-    };
-    this.getApi = this.getApi.bind(this);
-  }
-  componentDidMount() {
-    this.getApi();
-  }
+// Our custom easing
+let easing = [0.6, -0.05, 0.01, 0.99];
 
-  getApi() {
-
-    // Make a request for a user with a given ID
-    axios.get('https://yra-strapi.herokuapp.com/pages/1')
-      .then((response) => {
-        this.setState({ Title: response.data.Title, Content: response.data.Content })
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+// Custom variant
+const fadeInUp = {
+  initial: {
+    y: 500,
+    opacity: 0,
+    transition: { duration: 1, ease: easing }
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: easing
+    }
   }
+};
 
-  render() {
-    return <Layout>
+  function About ({ post }) {
+    return (
+    <Layout>
+       <motion.div variants={fadeInUp} initial='initial' animate='animate' exit={{ opacity: 0 }}>
       <div className={styles.about_page}>
         <div className="container py-5">
-        <motion.div initial="hidden" animate="visible" variants={{
-            hidden: {
-              scale: .8,
-              opacity: 0
-            },
-            visible: {
-              scale: 1,
-              opacity: 1,
-              transition: {
-                delay: .4
-              }
-            },
-          }}> 
+       
           <div className="d-flex align-items-center">
             <ul className="list-inline mb-0">
               <li className="list-inline-item">
                 <Link href="/"><a className="text-white"> Back </a></Link>
               </li>
             </ul>
-            <h1 className={clsx(styles.abt_breadcrumb, "mb-0 ml-auto text-white")}>{this.state.Title}</h1>
+            <h1 className={clsx(styles.abt_breadcrumb, "mb-0 ml-auto text-white")}>{post.Title}</h1>
           </div>
           <div className="pt-5">
-            <p className="text-white">{this.state.Content}</p>
+            <p className="text-white">{post.Content}</p>
           </div>
-          </motion.div>
         </div>
       </div>
+      </motion.div>
     </Layout>
-  }
+  )
 }
 
+
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  let post;
+
+  const res = await axios('https://yra-strapi.herokuapp.com/pages/1').then((response) => {
+    post=response.data;
+  })
+  // By returning { props: posts }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      post,
+    },
+  }
+}
 
 export default About;
