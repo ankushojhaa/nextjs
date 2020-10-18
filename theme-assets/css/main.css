@@ -1704,7 +1704,7 @@ p {
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden; }
   .page-cover .cover-bg {
     position: absolute;
@@ -1716,8 +1716,7 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    z-index: -1; }
+    background-attachment: fixed; }
   .page-cover .cover-bg-mask {
     position: absolute;
     top: 0;
@@ -1925,13 +1924,17 @@ p {
         top: 40px;
         z-index: 20; } }
     .page-header-alpha .navbar-brand .logo img {
+      width: 48px;
       height: 48px;
-      width: auto; }
+      object-fit: contain;
+      padding: 4px; }
       @media (min-width: 768px) {
         .page-header-alpha .navbar-brand .logo img {
+          width: 64px;
           height: 64px; } }
       @media (min-width: 1024px) {
         .page-header-alpha .navbar-brand .logo img {
+          width: 96px;
           height: 96px; } }
     .page-header-alpha .navbar-brand .text {
       display: flex;
@@ -3304,6 +3307,7 @@ p {
   margin-bottom: 64px; }
 
 .section-content .title-desc {
+  font-family: "Montserrat", "Open Sans", sans-serif;
   margin-bottom: 2rem; }
   @media (min-width: 768px) {
     .section-content .title-desc {
@@ -4172,19 +4176,25 @@ p {
           min-height: auto; } }
     .section-home .section-wrapper.padding-top {
       padding-top: 160px; }
-  .section-home .home-title {
-    font-size: 2.5rem;
+  .section-home .home-logo {
+    width: 360px;
+    height: auto;
+  }
+  .section-home .home-title .text {
+    margin-top: 16px;
+    color: rgb(9, 169, 152);
+    font-size: 1.25rem;
     font-family: "Montserrat", "Open Sans", sans-serif;
     position: relative; }
     @media (min-width: 340px) {
-      .section-home .home-title {
-        font-size: 3rem; } }
+      .section-home .home-title .text {
+        font-size: 1.5rem; } }
     @media (min-width: 768px) {
-      .section-home .home-title {
-        font-size: 6rem; } }
+      .section-home .home-title .text {
+        font-size: 3rem; } }
     @media (min-width: 1400px) {
-      .section-home .home-title {
-        font-size: 7rem;
+      .section-home .home-title .text {
+        font-size: 3.5rem;
         line-height: 1; } }
     .section-home .home-title .line {
       display: block; }

@@ -56,19 +56,6 @@ $(document).on('ready', function () {
 		listColor[i].style.backgroundColor = src;
 	}
 
-	// 2. Init Coutdown clock
-	try {
-		// check if clock is initialised
-		$('.clock-countdown').downCount({
-			date: $('.site-config').attr('data-date'),
-			offset: +10
-		});
-	}
-	catch (error) {
-		// Clock error : clock is unavailable
-		console.log("clock disabled/unavailable");
-	}
-
 	// 3. Show/hide menu when icon is clicked
 	var menuItems = $('.all-menu-wrapper .nav-link');
 	var menuIcon = $('.menu-icon, #navMenuIcon');
