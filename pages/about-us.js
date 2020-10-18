@@ -6,10 +6,10 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 const axios = require('axios');
 
-// Our custom easing
+{/* Our custom easing */}
 let easing = [0.6, -0.05, 0.01, 0.99];
 
-// Custom variant
+{/* Custom variant */}
 const fadeInUp = {
   initial: {
     y: 500,
@@ -54,15 +54,15 @@ const fadeInUp = {
 
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
+  {/* Call an external API endpoint to get posts. */}
+  {/* You can use any data fetching library */}
   let post;
 
   const res = await axios('https://yra-strapi.herokuapp.com/pages/1').then((response) => {
     post=response.data;
   })
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
+  {/* By returning { props: posts }, the Blog component */}
+  {/* will receive `posts` as a prop at build time */}
   return {
     props: {
       post,

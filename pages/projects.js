@@ -4,10 +4,10 @@ import styles from  '../assets/css/styles.module.css';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 const axios = require('axios');
-// Our custom easing
+{/* Our custom easing */}
 let easing = [0.6, -0.05, 0.01, 0.99];
 
-// Custom variant
+{/* Custom variant */}
 const fadeInUp = {
   initial: {
     y: 500,
